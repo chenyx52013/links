@@ -1,0 +1,27 @@
+name = "short-link-system"
+type = "pages"
+
+[build]
+  command = "npm run build"
+  cwd = "."
+  upload = {
+    dir = "dist"
+  }
+
+[[rules]]
+  pattern = "/*"
+  destination = "/functions/redirect.ts"
+
+[[rules]]
+  pattern = "/api/*"
+  destination = "/functions/api/:splat"
+
+[dev]
+  port = 3000
+
+[vars]
+  NODE_ENV = "production"
+
+[env.development]
+  [env.development.vars]
+    NODE_ENV = "development"

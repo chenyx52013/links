@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/redirect"
+  status = 200
+  conditions = { Query = { NOT = ["path=/.netlify/*", "path=/api/*"] } }
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client", "@auth/core"]
+  included_files = ["prisma/schema.prisma"]
+
+[dev]
+  port = 3000

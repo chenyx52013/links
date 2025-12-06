@@ -1,0 +1,35 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "functions/api/*.ts": {
+      "maxDuration": 10,
+      "runtime": "nodejs18.x"
+    },
+    "functions/redirect.ts": {
+      "maxDuration": 10,
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/functions/api/$1.ts"
+    },
+    {
+      "source": "^(?!/api/)(.*)",
+      "destination": "/functions/redirect.ts"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
+}
