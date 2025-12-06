@@ -4,11 +4,11 @@
   "functions": {
     "functions/api/*.ts": {
       "maxDuration": 10,
-      "runtime": "@vercel/node@22.x"
+      "runtime": "@vercel/node@22.8.0"
     },
     "functions/redirect.ts": {
       "maxDuration": 10,
-      "runtime": "@vercel/node@22.x"
+      "runtime": "@vercel/node@22.8.0"
     }
   },
   "rewrites": [
