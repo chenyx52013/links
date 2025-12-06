@@ -13,11 +13,11 @@
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/functions/api/$1.ts"
+      "source": "/api/:path*",
+      "destination": "/functions/api/:path*.ts"
     },
     {
-      "source": "^(?!/api/)(.*)",
+      "source": "/:path*",
       "destination": "/functions/redirect.ts"
     }
   ],
